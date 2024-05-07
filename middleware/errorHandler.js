@@ -1,4 +1,4 @@
-const { constants } = require("../constants");
+const { constants } = require("../constants/constants");
 const { VALIDATION_ERROR, NOT_FOUND, UNAUTHORIZED, FORBIDDEN, SERVER_ERROR } =
   constants;
 
