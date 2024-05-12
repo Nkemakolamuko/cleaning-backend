@@ -1,5 +1,10 @@
 {
-    "versions" : 2, 
-    "builds" : [{"source": "/index.js", "use": "@vercel/node"}],
-    "routes" : [{"source": "/(.*)", "dest": "/"}]
-}
+    "version": 2,
+    "name": "cleaning-agency",
+    "builds": [
+       { "src": "index.js", "use": "@vercel/node" }
+    ],
+    "routes": [
+       { "src": "/(.*)", "dest": "/index.js" }
+    ]
+ }

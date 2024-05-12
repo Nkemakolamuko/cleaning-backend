@@ -38,8 +38,10 @@ const createProduct = async (req, res) => {
   try {
     const { name, quantity, price, image } = req.body;
     if (!name || !quantity || !price) {
-      res.status(400);
-      throw new Error("The non-optional fields are required!");
+      res
+        .status(400)
+        .json({ message: "The non-optional fields are required!" });
+      // throw new Error("The non-optional fields are required!");
     }
     const product = await Product.create({
       name,
@@ -60,19 +62,23 @@ const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
     // const product = await Product.findIdAndUpdate(id);
-    const product = await Product.findId(id);
+    const product = await Product.findById(id);
     if (!product) {
-      return res.status(400).json({ message: error.message });
+      return res.status(400).json({ message: "Product not found." });
     }
 
     // const updatedProduct = await Product.findById(id);
 
     // A check for a user trying to update another users products
     if (product.user_id.toString() !== req.user.id) {
-      res.status(403);
-      throw new Error(
-        "You don't have permission to update other users products!"
-      );
+      res
+        .status(403)
+        .json({
+          message: "You don't have permission to update other users products!",
+        });
+      // throw new Error(
+      //   "You don't have permission to update other users products!"
+      // );
     }
     const updatedProduct = await Product.findByIdAndUpdate(id, req.body, {
       new: true,
@@ -92,10 +98,14 @@ const deleteProduct = async (req, res) => {
 
     // A check for a user trying to update another users products
     if (product.user_id.toString() !== req.user.id) {
-      res.status(403);
-      throw new Error(
-        "You don't have permission to update other users products!"
-      );
+      res
+        .status(403)
+        .json({
+          message: "You don't have permission to delete other users products!",
+        });
+      // throw new Error(
+      //   "You don't have permission to delete other users products!"
+      // );
     }
 
     if (!product) {
