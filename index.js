@@ -1,6 +1,5 @@
 const express = require("express");
-const cors = require("cors");
-// const { default: mongoose } = require("mongoose");
+// const cors = require("cors");
 const productRoute = require("./routes/product.route.js");
 const userRoute = require("./routes/user.route.js");
 const cleanersRoute = require("./routes/cleaner.route.js");
@@ -13,7 +12,7 @@ const PORT = process.env.PORT || 5001;
 
 // Middlewares
 // CORS
-app.use(cors());
+// app.use(cors());
 // Normal JSON
 app.use(express.json());
 app.use(errorHandler);
@@ -38,14 +37,3 @@ const start = () => {
 };
 
 start();
-
-// mongoose
-//   .connect("mongodb+srv://admin:OmolaDe2521@crudbackend.7w1cscl.mongodb.net/")
-//   .then(() => {
-//     console.log("Connected to database");
-//     app.listen(PORT, () => console.log(`Running on port ${PORT}`));
-//   })
-//   .catch((error) => console.error("Database connection error:", error.message));
-
-// No need for the export
-// module.exports = mongoose;
