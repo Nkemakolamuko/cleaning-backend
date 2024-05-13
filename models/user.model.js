@@ -19,6 +19,11 @@ const UserSchema = new mongoose.Schema(
       required: [true, "Please provide a password!"],
       unique: false,
     },
+    address: {
+      type: String,
+      required: [false],
+      unique: false,
+    },
   },
   {
     timestamps: true,
