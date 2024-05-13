@@ -16,8 +16,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const userAvailable = await User.findOne({ email });
   if (userAvailable) {
     // throw new Error("User already registered!");
-    res.status(400);
-    res.json({ message: "User already registered." });
+    res.status(400).json({ message: "User already registered." });
   }
 
   // Hash password using bcrypt first before sending the registered data to database
