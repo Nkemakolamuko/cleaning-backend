@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 // const { default: mongoose } = require("mongoose");
 const productRoute = require("./routes/product.route.js");
 const userRoute = require("./routes/user.route.js");
@@ -11,24 +12,13 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 // Middlewares
+// CORS
+app.use(cors());
 // Normal JSON
 app.use(express.json());
 app.use(errorHandler);
 // This one allows for getting values from form
 app.use(express.urlencoded({ extended: false }));
-// Curb Cores Error by adding a header here
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
-  );
-  next();
-});
 
 // Routes base url(which I'd change to the hosted one--) (No no no - it will now be the hosted-link/api/products and so on) - and module to call
 app.use("/api/products", productRoute); // The user will make request to this route - so it's post - it's a base url, the methods are in the routes folder
