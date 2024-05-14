@@ -28,14 +28,12 @@ const registerUser = asyncHandler(async (req, res) => {
     address,
   });
   if (user) {
-    res
-      .status(201)
-      .json({
-        _id: user.id,
-        email: user.email,
-        username: user.username,
-        address: user.address,
-      });
+    res.status(201).json({
+      _id: user.id,
+      email: user.email,
+      username: user.username,
+      address: user.address,
+    });
   } else {
     res.status(400).json({ message: "Invalid user data!" });
     // throw new Error("Invalid user data !");
@@ -65,10 +63,11 @@ const loginUser = asyncHandler(async (req, res) => {
           username: user.username, // this user object is our jwt payload
           email: user.email,
           id: user.id,
+          address: user.address, // I just added this now, so I can get me address
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "60m" } // can be adjusted
+      { expiresIn: "300m" } // can be adjusted
     );
     res.status(200).json({ accessToken }); // we can then use the accessToken to access our private routes
   } else {
