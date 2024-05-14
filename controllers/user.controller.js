@@ -9,9 +9,8 @@ const User = require("../models/user.model");
 const registerUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
   if (!username || !email || !password) {
-    res.status(400);
+    res.status(400).json({ message: "None of the fields should be empty." });
     // throw new Error("The fields can not be empty!");
-    res.json({ message: "None of the fields should be empty." });
   }
   const userAvailable = await User.findOne({ email });
   if (userAvailable) {
