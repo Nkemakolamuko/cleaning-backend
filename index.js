@@ -6,15 +6,17 @@ const cleanersRoute = require("./routes/cleaner.route.js");
 const dbConnect = require("./db/dbConnect.js");
 const errorHandler = require("./middleware/errorHandler.js");
 
-// CORS
 const app = express();
-app.use(
-  cors({
-    // origin: "https://247-cleaning.vercel.app",
-    origin: "https://247-cleaning.vercel.app",
-    methods: ["POST, GET, PUT, PATCH, DELETE"],
-  })
-);
+// CORS
+// app.use(
+//   cors({
+// origin: "https://247-cleaning.vercel.app",
+//     origin: "https://247-cleaning.vercel.app",
+//     methods: ["POST, GET, PUT, PATCH, DELETE"],
+//   })
+// );
+app.use(cors());
+app.options("*", cors());
 dbConnect();
 const PORT = process.env.PORT || 5001;
 
