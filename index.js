@@ -11,7 +11,7 @@ const app = express();
 app.use(
   cors({
     // origin: "https://247-cleaning.vercel.app",
-    origin: "http://localhost:5173",
+    origin: "https://247-cleaning.vercel.app",
     methods: ["POST, GET, PUT, PATCH, DELETE"],
   })
 );
