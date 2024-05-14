@@ -9,8 +9,9 @@ const errorHandler = require("./middleware/errorHandler.js");
 // CORS
 app.use(
   cors({
-    origin: "https://247-cleaning.vercel.app",
-    methods: ["POST, GET, PUT, PATCH, DELETE, OPTIONS"],
+    // origin: "https://247-cleaning.vercel.app",
+    origin: "http://localhost:5173",
+    methods: ["POST, GET, PUT, PATCH, DELETE"],
   })
 );
 dbConnect();
