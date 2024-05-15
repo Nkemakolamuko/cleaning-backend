@@ -64,6 +64,7 @@ const loginUser = asyncHandler(async (req, res) => {
           email: user.email,
           id: user.id,
           address: user.address, // I just added this now, so I can get me address
+          phoneNumber: user.phoneNumber, // I just added this now, so I can get me phone Number
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
