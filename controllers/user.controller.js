@@ -86,4 +86,27 @@ const currentUser = asyncHandler(async (req, res) => {
   res.json(req.user);
 });
 
-module.exports = { registerUser, loginUser, currentUser };
+// @desc Update a user information
+// @route PUT /api/users/current/id  -- I'd probably use a hosted url endpoint
+// @access private
+const updateCurrentUser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id);
+  if (!user) {
+    return res.status(400).json({ message: "User not found." });
+  }
+
+  // A check for a user trying to update another users details
+  if (user.user_id.toString() !== req.user.id) {
+    return res.status(403).json({
+      message: "You don't have permission to update other users details!",
+    });
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(id, req.body, {
+    new: true,
+  });
+  res.status(200).json(updatedUser);
+});
+
+module.exports = { registerUser, loginUser, currentUser, updateCurrentUser };

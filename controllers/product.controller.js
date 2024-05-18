@@ -27,13 +27,6 @@ const getProduct = async (req, res) => {
 
 // Send or create product
 const createProduct = async (req, res) => {
-  // res.writeHead(200, { "Content-type": "application/json" });
-  // let data = {
-  //   name: "Nkem Uko",
-  //   quantity: 10,
-  //   price: 2,
-  // };
-  // res.end(JSON.stringify(data));
   // Saving data to mongoDb using our model
   try {
     const { name, quantity, price, image } = req.body;
@@ -71,11 +64,9 @@ const updateProduct = async (req, res) => {
 
     // A check for a user trying to update another users products
     if (product.user_id.toString() !== req.user.id) {
-      res
-        .status(403)
-        .json({
-          message: "You don't have permission to update other users products!",
-        });
+      res.status(403).json({
+        message: "You don't have permission to update other users products!",
+      });
       // throw new Error(
       //   "You don't have permission to update other users products!"
       // );
@@ -98,11 +89,9 @@ const deleteProduct = async (req, res) => {
 
     // A check for a user trying to update another users products
     if (product.user_id.toString() !== req.user.id) {
-      res
-        .status(403)
-        .json({
-          message: "You don't have permission to delete other users products!",
-        });
+      res.status(403).json({
+        message: "You don't have permission to delete other users products!",
+      });
       // throw new Error(
       //   "You don't have permission to delete other users products!"
       // );

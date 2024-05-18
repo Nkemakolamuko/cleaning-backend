@@ -2,28 +2,50 @@ const mongoose = require("mongoose");
 
 const CleanersSchema = mongoose.Schema(
   {
-    storeName: {
+    name: {
+      type: String,
+      unique: false,
+      required: [true, "Please provide your full name."],
+    },
+    businessName: {
       type: String,
       unique: [true, "Store name already exist."],
       required: [true, "Please provide store name."],
     },
-    description: {
+    desc: {
       type: String,
       unique: false,
       required: [true, "Please provide store description."],
+    },
+    favorite: {
+      type: Boolean,
+      unique: false,
+      default: false,
+      required: false,
     },
     location: {
       type: String,
       unique: false,
       required: [true, "Please provide store location."],
     },
-    image: {
+    rating: {
+      type: Number,
+      unique: false,
+      default: 0,
+      required: false,
+    },
+    address: {
+      type: String,
+      unique: [true, "Address already exist"],
+      required: [true, "Please provide store address."],
+    },
+    img: {
       type: String,
       unique: false,
       required: [true, "Please provide store image."],
     },
     phoneNumber: {
-      type: Number,
+      type: String,
       unique: [
         true,
         "Phone number exist for another store, consider using another one.",
