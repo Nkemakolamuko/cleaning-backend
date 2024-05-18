@@ -55,12 +55,15 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const user = await User.findOne({ email });
   if (user && (await bcrypt.compare(password, user.password))) {
+    // Below is what I'm passing to the jwt payload -phew
     const accessToken = jwt.sign(
       {
         user: {
           id: user.id,
           username: user.username,
           email: user.email,
+          address: user.address,
+          phoneNumber: user.phoneNumber,
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
