@@ -57,6 +57,6 @@ const CleanersSchema = mongoose.Schema(
 );
 
 const Cleaners =
-  mongoose.model.Cleaners || mongoose.model("Cleaner", CleanersSchema);
+  mongoose.models.Cleaners || mongoose.model("Cleaner", CleanersSchema);
 
 module.exports = Cleaners;
