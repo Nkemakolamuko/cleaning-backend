@@ -7,7 +7,7 @@ const User = require("../models/user.model");
 // @route POST /api/users/register  -- I'd probably use a hosted url endpoint
 // @access public
 const registerUser = asyncHandler(async (req, res) => {
-  const { username, email, password, address } = req.body;
+  const { username, email, password, address, phoneNumber } = req.body;
   if (!username || !email || !password) {
     res.status(400).json({ message: "None of the fields should be empty." });
     // throw new Error("The fields can not be empty!");
@@ -26,6 +26,7 @@ const registerUser = asyncHandler(async (req, res) => {
     email,
     password: hashedPassword,
     address,
+    phoneNumber,
   });
   if (user) {
     res.status(201).json({
@@ -33,6 +34,7 @@ const registerUser = asyncHandler(async (req, res) => {
       email: user.email,
       username: user.username,
       address: user.address,
+      phoneNumber: user.phoneNumber,
     });
   } else {
     res.status(400).json({ message: "Invalid user data!" });
