@@ -27,7 +27,7 @@ app.use(errorHandler);
 // This one allows for getting values from form
 app.use(express.urlencoded({ extended: false }));
 
-app.use(express.static("./uploads"));
+// app.use(express.static("./uploads"));
 
 app.use("/api/products", productRoute); // The user will make request to this route - so it's post - it's a base url, the methods are in the routes folder
 app.use("/api/users", userRoute); // For registering users
