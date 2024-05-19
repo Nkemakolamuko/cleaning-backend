@@ -1,6 +1,6 @@
 const express = require("express");
 require("dotenv").config();
-const cors = require("cors");
+// const cors = require("cors");
 // const productRoute = require("./routes/product.route.js");
 // const userRoute = require("./routes/user.route.js");
 // const cleanersRoute = require("./routes/cleaner.route.js");
@@ -16,8 +16,8 @@ const app = express();
 //     methods: ["POST, GET, PUT, PATCH, DELETE"],
 //   })
 // );
-app.use(cors());
-app.options("*", cors());
+// app.use(cors());
+// app.options("*", cors());
 // dbConnect();
 // const PORT = process.env.PORT || 5001;
 
