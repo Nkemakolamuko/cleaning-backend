@@ -9,7 +9,9 @@ const validateToken = asyncHandler(async (req, res, next) => {
     token = authHeader.split(" ")[1]; // Split where there's a whitespace and return item at index 1 which is the token
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
       if (err) {
-        res.status(401).json({ message: "User is not authorized" });
+        res
+          .status(401)
+          .json({ message: "User is not authorized or token expired" });
         // throw new Error("User is not authorized!");
       }
       req.user = decoded.user; // we verified the token and extracted it's value, then appended it to the req.user
