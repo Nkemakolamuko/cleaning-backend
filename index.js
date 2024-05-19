@@ -1,12 +1,12 @@
 const express = require("express");
 const cors = require("cors");
+const app = express();
 const productRoute = require("./routes/product.route.js");
 const userRoute = require("./routes/user.route.js");
 const cleanersRoute = require("./routes/cleaner.route.js");
 const dbConnect = require("./db/dbConnect.js");
 const errorHandler = require("./middleware/errorHandler.js");
-
-const app = express();
+require("dotenv").config();
 
 // CORS configuration
 app.use(
