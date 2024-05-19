@@ -16,8 +16,8 @@ const app = express();
 //     methods: ["POST, GET, PUT, PATCH, DELETE"],
 //   })
 // );
-app.use(cors());
-app.options("*", cors());
+// app.use(cors());
+// app.options("*", cors());
 dbConnect();
 const PORT = process.env.PORT || 5001;
 
