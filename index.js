@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
 const productRoute = require("./routes/product.route.js");
 const userRoute = require("./routes/user.route.js");
 const cleanersRoute = require("./routes/cleaner.route.js");
@@ -16,13 +15,8 @@ const app = express();
 //     methods: ["POST, GET, PUT, PATCH, DELETE"],
 //   })
 // );
-const corsConfig = {
-  origin: "*",
-  credential: true,
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-};
-app.use(cors(corsConfig));
-// app.options("*", cors());
+app.use(cors());
+app.options("*", cors());
 dbConnect();
 const PORT = process.env.PORT || 5001;
 
