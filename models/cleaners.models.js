@@ -36,7 +36,7 @@ const CleanersSchema = mongoose.Schema(
     },
     address: {
       type: String,
-      unique: [true, "Address already exist"],
+      unique: true,
       required: [true, "Please provide store address."],
     },
     img: {
