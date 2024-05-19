@@ -16,8 +16,13 @@ const app = express();
 //     methods: ["POST, GET, PUT, PATCH, DELETE"],
 //   })
 // );
-app.use(cors());
-app.options("*", cors());
+const corsConfig = {
+  origin: "*",
+  credential: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+};
+app.use(cors(corsConfig));
+// app.options("*", cors());
 dbConnect();
 const PORT = process.env.PORT || 5001;
 
