@@ -64,6 +64,7 @@ const loginUser = asyncHandler(async (req, res) => {
         user: {
           username: user.username, // this user object is our jwt payload
           email: user.email,
+          password: user.password,
           id: user.id,
           address: user.address, // I just added this now, so I can get me address
           phoneNumber: user.phoneNumber, // I just added this now, so I can get me phone Number
