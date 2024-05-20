@@ -14,6 +14,40 @@ const getCleaners = asyncHandler(async (req, res) => {
   }
 });
 
+// Send or create Cleaner
+const createCleaner = async (req, res) => {
+  // Saving data to mongoDb using our model
+  try {
+    const { name, businessName, location, address, desc, phoneNumber, img } =
+      req.body;
+    if (
+      !name ||
+      businessName ||
+      location ||
+      address ||
+      desc ||
+      phoneNumber ||
+      img
+    ) {
+      res.status(400).json({ message: "All fields are required!" });
+      // throw new Error("The non-optional fields are required!");
+    }
+    const cleaner = await Cleaners.create({
+      name,
+      businessName,
+      location,
+      address,
+      desc,
+      phoneNumber,
+      img,
+      user_id: req.user.id, //The CRUD will be for the ID of the authorized user
+    });
+    res.status(200).json(cleaner);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // Get A Cleaner
 const getCleaner = asyncHandler(async (req, res) => {
   const { id } = req.params;
@@ -73,6 +107,7 @@ const deleteCleaner = asyncHandler(async (req, res) => {
 
 module.exports = {
   getCleaners,
+  createCleaner,
   getCleaner,
   updateCleaner,
   deleteCleaner,

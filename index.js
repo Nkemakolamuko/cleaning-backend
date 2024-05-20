@@ -11,7 +11,6 @@ const app = express();
 
 // CORS
 app.use(cors());
-app.use(cors({ origin: "*" }));
 app.options("*", cors());
 
 // Database
