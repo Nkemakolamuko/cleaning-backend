@@ -56,7 +56,8 @@ const resetPassword = asyncHandler(async (req, res) => {
       return res.status(404).json({ message: "No user found." });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
     user.password = hashedPassword;
     await user.save();
 
