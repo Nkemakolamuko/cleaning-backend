@@ -13,6 +13,9 @@ const app = express();
 app.use(cors());
 app.options("*", cors());
 
+// Serve static files
+app.use(express.static("./uploads"));
+
 // Database
 dbConnect();
 const PORT = process.env.PORT || 5001;
