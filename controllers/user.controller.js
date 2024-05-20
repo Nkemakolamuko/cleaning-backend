@@ -9,12 +9,6 @@ const User = require("../models/user.model");
 const registerUser = asyncHandler(async (req, res) => {
   const { username, email, password, address, phoneNumber } = req.body;
 
-  if (!username || !email || !password || !address || !phoneNumber) {
-    return res
-      .status(400)
-      .json({ message: "None of the fields should be empty." });
-  }
-
   const userAvailable = await User.findOne({ email });
   if (userAvailable) {
     return res.status(400).json({ message: "User already registered." });
@@ -49,10 +43,6 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  if (!email || !password) {
-    return res.status(400).json({ message: "All fields are required!" });
-  }
-
   const user = await User.findOne({ email });
   if (user && (await bcrypt.compare(password, user.password))) {
     // Below is what I'm passing to the jwt payload -phew
@@ -71,7 +61,9 @@ const loginUser = asyncHandler(async (req, res) => {
     );
     return res.status(200).json({ accessToken });
   } else {
-    return res.status(403).json({ message: "Email or password is not valid!" });
+    return res
+      .status(403)
+      .json({ message: "Email or password is not correct!" });
   }
 });
 
@@ -88,10 +80,6 @@ const currentUser = asyncHandler(async (req, res) => {
 const updateCurrentUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id);
-
-  if (!user) {
-    return res.status(400).json({ message: "User not found." });
-  }
 
   if (user.id.toString() !== req.user.id) {
     return res.status(403).json({
