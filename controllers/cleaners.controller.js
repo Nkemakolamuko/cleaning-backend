@@ -20,7 +20,14 @@ const createCleaner = async (req, res) => {
   try {
     const { name, businessName, location, address, desc, phoneNumber } =
       req.body;
-    if (!name || businessName || location || address || desc || phoneNumber) {
+    if (
+      !name ||
+      !businessName ||
+      !location ||
+      !address ||
+      !desc ||
+      !phoneNumber
+    ) {
       res.status(400).json({ message: "All fields are required!" });
       // throw new Error("The non-optional fields are required!");
     }
