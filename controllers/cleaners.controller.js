@@ -18,17 +18,9 @@ const getCleaners = asyncHandler(async (req, res) => {
 const createCleaner = async (req, res) => {
   // Saving data to mongoDb using our model
   try {
-    const { name, businessName, location, address, desc, phoneNumber, img } =
+    const { name, businessName, location, address, desc, phoneNumber } =
       req.body;
-    if (
-      !name ||
-      businessName ||
-      location ||
-      address ||
-      desc ||
-      phoneNumber ||
-      img
-    ) {
+    if (!name || businessName || location || address || desc || phoneNumber) {
       res.status(400).json({ message: "All fields are required!" });
       // throw new Error("The non-optional fields are required!");
     }
@@ -39,7 +31,6 @@ const createCleaner = async (req, res) => {
       address,
       desc,
       phoneNumber,
-      img,
       user_id: req.user.id, //The CRUD will be for the ID of the authorized user
     });
     res.status(200).json(cleaner);

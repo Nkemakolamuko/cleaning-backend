@@ -39,11 +39,6 @@ const CleanersSchema = mongoose.Schema(
       unique: true,
       required: [true, "Please provide store address."],
     },
-    img: {
-      type: String,
-      unique: false,
-      required: [true, "Please provide store image."],
-    },
     phoneNumber: {
       type: String,
       unique: [
