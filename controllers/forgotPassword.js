@@ -51,7 +51,7 @@ const resetPassword = asyncHandler(async (req, res) => {
 
   try {
     const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-    const user = await User.findById(decodedToken.id);
+    const user = await User.findById(decodedToken._id);
     if (!user) {
       return res.status(404).json({ message: "No user found." });
     }
